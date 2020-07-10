@@ -5,16 +5,13 @@ using UnityEngine;
 public class GenerateCitizens : MonoBehaviour
 {
     public Sprite citizen_base;
-
-    private int numCitizens;
+    public int numCitizens = 25;
 
     private GameObject[] citizens;
 
     // Start is called before the first frame update
     void Start()
     {
-        numCitizens = 25;
-
         for (int i = 0; i < numCitizens; i++)
         {
             Vector2 spawn = new Vector2();
@@ -27,6 +24,7 @@ public class GenerateCitizens : MonoBehaviour
             go.transform.rotation = Quaternion.identity;
             go.AddComponent<CitizenClamour>();
             go.transform.parent = transform;
+            go.name = "Citizen " + i.ToString();
         }
     }
 }
