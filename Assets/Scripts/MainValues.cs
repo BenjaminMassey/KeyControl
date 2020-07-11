@@ -5,8 +5,8 @@ using UnityEngine;
 public static class MainValues
 {
     // Amounts
+    public static int year = 0;
     public static float money = 10000.0f; // in $
-    public static float debt = 0.0f; // in $
     public static float citizen_wealth = 500.0f; // in $
     public static float government_wealth = 1500.0f; // in $
     public static float tax_rate = 0.2f; // in %
@@ -31,6 +31,10 @@ public static class MainValues
     private static float citizen_max = 2000.0f;
     private static float government_min = 1000.0f;
     private static float government_max = 20000.0f;
+    private static float military_base = 400.0f;
+
+    // Decay rates
+    private static float education_decay = 100.0f;
 
     private static float GetCitizenHappiness()
     {
@@ -70,8 +74,43 @@ public static class MainValues
         return val;
     }
 
+    public static float GetOutsideAgitation()
+    {
+        return outside_agitation;
+    }
+
     public static string GetNicePercent(float percent)
     {
         return (Mathf.Round(percent * 1000.0f) / 10.0f).ToString();
+    }
+
+    public static void DoAYear()
+    {
+        // Do citizen taxes
+        float tax_amount = tax_rate * citizen_wealth;
+        citizen_wealth -= tax_amount;
+        citizen_wealth = Mathf.Max(0.0f, citizen_wealth);
+        money += citizen_wealth;
+
+        // Give rest of gov money
+        government_wealth += government_kickbacks;
+        money -= government_kickbacks;
+        money = Mathf.Max(0.0f, money);
+
+        // Take out spent money
+        money -= education + military;
+        money = Mathf.Max(0.0f, money);
+
+        // Foreign relations
+        outside_agitation += ((military_base - military) / military_base) / 100.0f;
+        outside_agitation = Mathf.Max(0.0f, outside_agitation);
+        outside_agitation = Mathf.Min(1.0f, outside_agitation);
+
+        // Common decay
+        education -= education_decay;
+        education = Mathf.Max(0.0f, education);
+
+        // Done :)
+        year += 1;
     }
 }

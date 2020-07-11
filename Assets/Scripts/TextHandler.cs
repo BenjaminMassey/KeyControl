@@ -10,15 +10,19 @@ public class TextHandler : MonoBehaviour
     void Start()
     {
         text_obj = GetComponent<Text>();
+    }
+
+    void FixedUpdate()
+    {
         GlobalText.text = "Citizen: ";
         GlobalText.text += GlobalText.GetNicePercent(MainValues.GetCitizenPercent()) + "%";
         GlobalText.text += " | ";
         GlobalText.text += "Government: ";
         GlobalText.text += GlobalText.GetNicePercent(MainValues.GetGovernmentPercent()) + "%";
-    }
+        GlobalText.text += " | ";
+        GlobalText.text += "Outside Agitation: ";
+        GlobalText.text += GlobalText.GetNicePercent(MainValues.GetOutsideAgitation()) + "%";
 
-    void FixedUpdate()
-    {
         text_obj.text = GlobalText.text;
     }
 }
