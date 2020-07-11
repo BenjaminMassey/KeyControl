@@ -5,18 +5,60 @@ using UnityEngine.UI;
 
 public class MainFuctions : MonoBehaviour
 {
-    private Text year_text;
+    public bool running;
+
+    private Text time_text;
+
+    private int day;
+    private int year;
+
+    private float secondsPerDay = 0.3f;
 
     private void Start()
     {
-        year_text = GameObject.Find("YearText").GetComponent<Text>();
-        year_text.text = "Year 0";
+        time_text = GameObject.Find("TimeText").GetComponent<Text>();
+        time_text.text = "Year 0\nDay 0";
+        running = true;
+        StartCoroutine("RunTime");
     }
 
-    // For button
-    public void PerformYear()
+    IEnumerator RunTime()
     {
-        MainValues.DoAYear();
-        year_text.text = "Year " + MainValues.year;
+        day = 0;
+        year = 0;
+        while (true)
+        {
+            if (running)
+            {
+                for (int i = 0; i < 50 * secondsPerDay; i++)
+                {
+                    yield return new WaitForFixedUpdate();
+                }
+                day++;
+                if ((day % 7) == 0)
+                {
+                    MainValues.Week();
+                }
+                if (day == 365)
+                {
+                    day = 0;
+                    year += 1;
+                    MainValues.Year();
+                }
+                MainValues.Day();
+                TextUpdate();
+            }
+            else
+            {
+                yield return new WaitForFixedUpdate();
+            }
+        }
     }
+
+    private void TextUpdate()
+    {
+        time_text.text = "Year " + year + "\n Day " + day;
+    }
+
+
 }

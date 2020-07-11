@@ -15,7 +15,7 @@ public class GenerateCitizens : MonoBehaviour
         for (int i = 0; i < numCitizens; i++)
         {
             Vector2 spawn = new Vector2();
-            spawn.x = transform.position.x + Random.Range(-8.0f, 8.0f);
+            spawn.x = transform.position.x + Random.Range(-6.5f, 6.5f);
             spawn.y = transform.position.y + Random.Range(-0.5f, 0.5f);
             GameObject go = new GameObject();
             go.AddComponent<SpriteRenderer>();
