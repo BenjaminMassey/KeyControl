@@ -26,7 +26,7 @@ public class TextHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        main_text.text = "Outside Threat Chance: ";
+        main_text.text = "Foreign Threat: ";
         main_text.text += GlobalText.GetNicePercent(MainValues.GetOutsideAgitation()) + "%";
 
         money_text.text = "$" + MainValues.money;
@@ -35,7 +35,8 @@ public class TextHandler : MonoBehaviour
         {
             citizen_text.text = "Citizens\n";
             citizen_text.text += "Wealth: $" + Mathf.Round(MainValues.citizen_wealth) + "\n";
-            citizen_text.text += "Happiness: " + GlobalText.GetNicePercent(MainValues.GetCitizenPercent()) + "%";
+            citizen_text.text += "Happiness: " + GlobalText.GetNicePercent(MainValues.GetCitizenPercent()) + "%\n";
+            citizen_text.text += "Smarts: " + Mathf.Round(MainValues.citizen_smarts);
         }
 
         if (MainValues.onRightSide)

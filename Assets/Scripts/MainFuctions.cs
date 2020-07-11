@@ -9,43 +9,44 @@ public class MainFuctions : MonoBehaviour
 
     private Text time_text;
 
-    private int day;
+    private int month;
     private int year;
 
-    private float secondsPerDay = 0.3f;
+    private string[] months = { "January", "February", "March",
+                                "April", "May", "June", "July",
+                                "August", "September", "October",
+                                "November", "December" };
+
+    private float secondsPerMonth = 1.0f;
 
     private void Start()
     {
         time_text = GameObject.Find("TimeText").GetComponent<Text>();
-        time_text.text = "Year 0\nDay 0";
+        time_text.text = "Year 0\nJanuary";
         running = true;
         StartCoroutine("RunTime");
     }
 
     IEnumerator RunTime()
     {
-        day = 0;
+        month = 0;
         year = 0;
         while (true)
         {
             if (running)
             {
-                for (int i = 0; i < 50 * secondsPerDay; i++)
+                for (int i = 0; i < 50 * secondsPerMonth; i++)
                 {
                     yield return new WaitForFixedUpdate();
                 }
-                day++;
-                if ((day % 7) == 0)
+                month++;
+                if (month == 12)
                 {
-                    MainValues.Week();
-                }
-                if (day == 365)
-                {
-                    day = 0;
+                    month = 0;
                     year += 1;
                     MainValues.Year();
                 }
-                MainValues.Day();
+                MainValues.Month();
                 TextUpdate();
             }
             else
@@ -57,7 +58,7 @@ public class MainFuctions : MonoBehaviour
 
     private void TextUpdate()
     {
-        time_text.text = "Year " + year + "\n Day " + day;
+        time_text.text = "Year " + year + "\n" + months[month];
     }
 
 

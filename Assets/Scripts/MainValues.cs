@@ -11,27 +11,28 @@ public static class MainValues
     public static float money = 10000.0f; // in $
     public static float citizen_wealth = 500.0f; // in $
     public static float government_wealth = 1500.0f; // in $
-    public static float tax_rate = 0.2f; // in %
-    public static float education = 400.0f; // in $
-    public static float military = 800.0f; // in $
+    public static float tax_rate = 0.1f; // in %
+    public static float education = 100.0f; // in $
+    public static float military = 300.0f; // in $
     public static float outside_agitation = 0.2f; // reach 1.0f and war
-    public static float government_salaries = 800.0f; // in $
+    public static float government_salaries = 200.0f; // in $
+    public static float citizen_smarts = 50.0f;
 
     // Citizen component multipliers
-    private static float citizen_wealth_value = 1.0f;
+    private static float citizen_wealth_value = 1.6f;
     private static float tax_rate_value = 50.0f;
     private static float education_value = 0.2f;
 
     // Government component multipliers
-    private static float government_wealth_value = 1.0f;
-    private static float military_value = 3.0f;
-    private static float outside_agitation_value = 2.0f;
-    private static float government_salaries_value = 3.0f;
+    private static float government_wealth_value = 2.0f;
+    private static float military_value = 4.0f;
+    private static float outside_agitation_value = 3.0f;
+    private static float government_salaries_value = 10.0f;
 
     // Values for percentages / failure / etc
-    private static float citizen_min = 100.0f;
-    private static float citizen_max = 2000.0f;
-    private static float government_min = 1000.0f;
+    private static float citizen_min = 300.0f;
+    private static float citizen_max = 4000.0f;
+    private static float government_min = 1500.0f;
     private static float government_max = 20000.0f;
     private static float military_base = 400.0f;
 
@@ -90,9 +91,12 @@ public static class MainValues
     {
         // Do citizen taxes
         float tax_amount = tax_rate * citizen_wealth;
+        money += tax_amount;
         citizen_wealth -= tax_amount;
         citizen_wealth = Mathf.Max(0.0f, citizen_wealth);
-        money += citizen_wealth;
+
+        // Educate citizens
+        citizen_smarts += education / 5.0f;
 
         // Give rest of gov money
         government_wealth += government_salaries;
@@ -104,23 +108,24 @@ public static class MainValues
         money = Mathf.Max(0.0f, money);
 
         // Foreign relations
-        outside_agitation += ((military_base - military) / military_base) / 100.0f;
+        outside_agitation += 2f * outside_agitation_value * (((military_base - military) / military_base) / 100.0f);
         outside_agitation = Mathf.Max(0.0f, outside_agitation);
         outside_agitation = Mathf.Min(1.0f, outside_agitation);
     }
 
-    public static void Week()
-    {
-        // EMPTY FOR NOW
-    }
-
-    public static void Day()
+    public static void Month()
     {
         // Common decay
-        education -= education_decay;
-        education = Mathf.Max(0.0f, education);
+        government_wealth -= Mathf.Max(20.0f, government_wealth * 0.03f);
+        if (money < 500.0f || government_wealth < 500.0f || government_salaries == 0.0f)
+        {
+            government_wealth -= 20.0f;
+        }
+        government_wealth = Mathf.Max(0.0f, government_wealth);
+        citizen_smarts -= citizen_smarts * 0.02f;
 
         // Common accumulation
-        citizen_wealth += 0.005f * citizen_wealth;
+        citizen_wealth += 0.005f * citizen_wealth * (citizen_smarts / 50.0f);
+        money += 5.0f;
     }
 }

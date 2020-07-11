@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Main.unity
+    guid: 0a214296ff0ca3c46928b28de225bbf8
+  - enabled: 1
+    path: Assets/Scenes/CitizenFail.unity
+    guid: 008f06572bf48464c984894717b53a9e
+  - enabled: 1
+    path: Assets/Scenes/ForeignFail.unity
+    guid: 4c238cf1ef01ade4c984f78aaad7795c
+  - enabled: 1
+    path: Assets/Scenes/GovFail.unity
+    guid: 892a14ae1b6c466459b0a51be4d64386
   m_configObjects: {}
