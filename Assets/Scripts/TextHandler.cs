@@ -26,28 +26,22 @@ public class TextHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        GlobalText.text = "Citizen: ";
-        GlobalText.text += GlobalText.GetNicePercent(MainValues.GetCitizenPercent()) + "%";
-        GlobalText.text += "\n";
-        GlobalText.text += "Government: ";
-        GlobalText.text += GlobalText.GetNicePercent(MainValues.GetGovernmentPercent()) + "%";
-        GlobalText.text += "\n";
-        GlobalText.text += "Outside Agitation: ";
-        GlobalText.text += GlobalText.GetNicePercent(MainValues.GetOutsideAgitation()) + "%";
-
-        main_text.text = GlobalText.text;
+        main_text.text = "Outside Threat Chance: ";
+        main_text.text += GlobalText.GetNicePercent(MainValues.GetOutsideAgitation()) + "%";
 
         money_text.text = "$" + MainValues.money;
 
         if (!MainValues.onRightSide)
         {
-            citizen_text.text = "Wealth: $" + Mathf.Round(MainValues.citizen_wealth) + "\n";
+            citizen_text.text = "Citizens\n";
+            citizen_text.text += "Wealth: $" + Mathf.Round(MainValues.citizen_wealth) + "\n";
             citizen_text.text += "Happiness: " + GlobalText.GetNicePercent(MainValues.GetCitizenPercent()) + "%";
         }
 
         if (MainValues.onRightSide)
         {
-            gov_text.text = "Wealth: $" + Mathf.Round(MainValues.government_wealth) + "\n";
+            gov_text.text = "Government\n";
+            gov_text.text += "Wealth: $" + Mathf.Round(MainValues.government_wealth) + "\n";
             gov_text.text += "Happiness: " + GlobalText.GetNicePercent(MainValues.GetGovernmentPercent()) + "%";
         }
     }
@@ -55,8 +49,6 @@ public class TextHandler : MonoBehaviour
 
 public static class GlobalText
 {
-    public static string text;
-
     public static string GetNicePercent(float percent)
     {
         return (Mathf.Round(percent * 1000.0f) / 10.0f).ToString();
