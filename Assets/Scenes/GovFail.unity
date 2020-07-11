@@ -132,6 +132,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera+UI (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6478910869414604442, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
+        type: 3}
+      propertyPath: m_Text
+      value: Your cabinet has found a replacement....
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341774357232843864, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2230175691415097465, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
         type: 3}
       propertyPath: m_IsActive
@@ -176,11 +186,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341774357232843864, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6478910868973964521, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
         type: 3}
@@ -237,19 +242,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6478910869414604442, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
-        type: 3}
-      propertyPath: m_Text
-      value: Your cabinet has found a replacement....
-      objectReference: {fileID: 0}
     - target: {fileID: 6478910869414604443, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478910869522024788, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2181436513033080282, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
@@ -265,6 +260,11 @@ PrefabInstance:
     - target: {fileID: 6478910868389301014, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478910869522024788, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
