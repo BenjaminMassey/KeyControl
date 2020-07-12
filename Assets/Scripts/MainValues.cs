@@ -36,9 +36,6 @@ public static class MainValues
     private static float government_max = 20000.0f;
     private static float military_base = 400.0f;
 
-    // Decay rates
-    private static float education_decay = 100.0f;
-
     private static float GetCitizenHappiness()
     {
         float cwv = citizen_wealth_value;

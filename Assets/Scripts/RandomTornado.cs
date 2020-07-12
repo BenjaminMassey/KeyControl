@@ -22,6 +22,10 @@ public class RandomTornado : MonoBehaviour
 
     IEnumerator Run()
     {
+        while (!GameObject.Find("Canvas").GetComponent<MainFuctions>().running)
+        {
+            yield return new WaitForFixedUpdate();
+        }
         for (int i = 0; i < 50 * wait_time; i++)
         {
             yield return new WaitForFixedUpdate();

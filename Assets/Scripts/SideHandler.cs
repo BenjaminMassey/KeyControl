@@ -48,7 +48,7 @@ public class SideHandler : MonoBehaviour
         Vector3 pos = p.transform.position;
         float amount = 0.06f;
         float a = 0.0f;
-        float b = 17.25f;
+        float b = 15.25f;
         float t;
         if (MainValues.onRightSide) { t = 1.0f; }
         else { t = 0.0f; }
