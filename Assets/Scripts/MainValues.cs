@@ -89,6 +89,8 @@ public static class MainValues
 
     public static void Year()
     {
+        float money_before = money;
+
         // Do citizen taxes
         float tax_amount = tax_rate * citizen_wealth;
         money += tax_amount;
@@ -111,6 +113,11 @@ public static class MainValues
         outside_agitation += 2f * outside_agitation_value * (((military_base - military) / military_base) / 100.0f);
         outside_agitation = Mathf.Max(0.0f, outside_agitation);
         outside_agitation = Mathf.Min(1.0f, outside_agitation);
+
+        float money_after = money;
+
+        GainLossEffect gle = GameObject.Find("Player").GetComponent<GainLossEffect>();
+        gle.Handle(money_before, money_after);
     }
 
     public static void Month()

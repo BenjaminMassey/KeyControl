@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomTornado : MonoBehaviour
 {
     public GameObject[] tornadoes;
+    public AudioSource sfx;
 
     public float seconds = 3.0f;
     public float chance = 0.05f;
@@ -40,6 +41,7 @@ public class RandomTornado : MonoBehaviour
     IEnumerator Do()
     {
         doing = true;
+        sfx.Play();
         float fadeSecs = 1.0f;
         float hangSecs = 1.0f;
         float amount = (255f / (50f * fadeSecs)) / 255f;
@@ -70,7 +72,11 @@ public class RandomTornado : MonoBehaviour
             }
             yield return new WaitForFixedUpdate();
         }
+        GainLossEffect gle = GameObject.Find("Player").GetComponent<GainLossEffect>();
+        gle.Handle(1.0f, 0.9f); // force red money text effect
+        gle.loss_sfx.Play(); // force loss sound effect
         MainValues.money = 0.5f * MainValues.money;
+        sfx.Stop();
         doing = false;
     }
 }

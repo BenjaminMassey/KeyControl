@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class SideHandler : MonoBehaviour
 {
+    public AudioSource left_sfx;
+    public AudioSource right_sfx;
+
     private GameObject left_side;
     private GameObject right_side;
 
@@ -22,7 +25,9 @@ public class SideHandler : MonoBehaviour
         left_side.SetActive(!MainValues.onRightSide);
         GameObject.Find("STUPIDLEFTARROW").GetComponent<Text>().enabled = MainValues.onRightSide;
         right_side.SetActive(MainValues.onRightSide);
-        
+
+        if (MainValues.onRightSide) { right_sfx.Play(); }
+        else { left_sfx.Play(); }
     }
 
     public void ToggleSide()
@@ -32,6 +37,9 @@ public class SideHandler : MonoBehaviour
 
     private IEnumerator SideChange()
     {
+        left_sfx.Stop();
+        right_sfx.Stop();
+
         left_side.SetActive(false);
         GameObject.Find("STUPIDLEFTARROW").GetComponent<Text>().enabled = false;
         right_side.SetActive(false);

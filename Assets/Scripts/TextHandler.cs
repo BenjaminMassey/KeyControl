@@ -26,15 +26,14 @@ public class TextHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        main_text.text = "Foreign Threat: ";
-        main_text.text += GlobalText.GetNicePercent(MainValues.GetOutsideAgitation()) + "%";
+        main_text.text = GlobalText.text;
 
-        money_text.text = "$" + MainValues.money;
+        money_text.text = "$" + GlobalText.GetNiceMoney(MainValues.money);
 
         if (!MainValues.onRightSide)
         {
             citizen_text.text = "Citizens\n";
-            citizen_text.text += "Wealth: $" + Mathf.Round(MainValues.citizen_wealth) + "\n";
+            citizen_text.text += "Wealth: $" + GlobalText.GetNiceMoney(MainValues.citizen_wealth) + "\n";
             citizen_text.text += "Happiness: " + GlobalText.GetNicePercent(MainValues.GetCitizenPercent()) + "%\n";
             citizen_text.text += "Smarts: " + Mathf.Round(MainValues.citizen_smarts);
         }
@@ -42,14 +41,47 @@ public class TextHandler : MonoBehaviour
         if (MainValues.onRightSide)
         {
             gov_text.text = "Government\n";
-            gov_text.text += "Wealth: $" + Mathf.Round(MainValues.government_wealth) + "\n";
-            gov_text.text += "Happiness: " + GlobalText.GetNicePercent(MainValues.GetGovernmentPercent()) + "%";
+            gov_text.text += "Wealth: $" + GlobalText.GetNiceMoney(MainValues.government_wealth) + "\n";
+            gov_text.text += "Happiness: " + GlobalText.GetNicePercent(MainValues.GetGovernmentPercent()) + "%\n";
+            gov_text.text += "Foreign Threat: ";
+            gov_text.text += GlobalText.GetNicePercent(MainValues.GetOutsideAgitation()) + "%";
         }
     }
 }
 
 public static class GlobalText
 {
+    public static string text= "";
+
+    public static string GetNiceMoney(float money)
+    {
+        string m = money.ToString();
+        string[] ms = m.Split('.');
+        string nm = ms[0] + ".";
+        if (ms.Length > 1)
+        {
+            string n = "";
+            if (ms[1].Length > 2)
+            {
+                n += ms[1][0];
+                n += ms[1][1];
+            }
+            else
+            {
+                n += ms[1];
+                if (n.Length == 1)
+                {
+                    n += "0";
+                }
+            }
+            nm += n;
+        }
+        else
+        {
+            nm += "00";
+        }
+        return nm;
+    }
     public static string GetNicePercent(float percent)
     {
         return (Mathf.Round(percent * 1000.0f) / 10.0f).ToString();
