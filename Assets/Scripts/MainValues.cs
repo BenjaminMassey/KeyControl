@@ -24,16 +24,16 @@ public static class MainValues
     private static float education_value = 0.2f;
 
     // Government component multipliers
-    private static float government_wealth_value = 2.0f;
+    private static float government_wealth_value = 4.0f;
     private static float military_value = 4.0f;
     private static float outside_agitation_value = 3.0f;
-    private static float government_salaries_value = 10.0f;
+    private static float government_salaries_value = 5.0f;
 
     // Values for percentages / failure / etc
-    private static float citizen_min = 300.0f;
-    private static float citizen_max = 4000.0f;
+    private static float citizen_min = 500.0f;
+    private static float citizen_max = 6000.0f;
     private static float government_min = 1500.0f;
-    private static float government_max = 20000.0f;
+    private static float government_max = 17000.0f;
     private static float military_base = 400.0f;
 
     private static float GetCitizenHappiness()
@@ -107,7 +107,12 @@ public static class MainValues
         money = Mathf.Max(0.0f, money);
 
         // Foreign relations
-        outside_agitation += 4f * outside_agitation_value * (((military_base - military) / military_base) / 100.0f);
+        float foreign_result = 2f * outside_agitation_value * (((military_base - military) / military_base) / 100.0f);
+        if (foreign_result > 0.0f)
+        {
+            outside_agitation *= Mathf.Min(5.0f, EndData.year / 4.0f);
+        }
+        outside_agitation += foreign_result;
         outside_agitation = Mathf.Max(0.0f, outside_agitation);
         outside_agitation = Mathf.Min(1.0f, outside_agitation);
 
@@ -120,16 +125,16 @@ public static class MainValues
     public static void Month()
     {
         // Common decay
-        government_wealth -= Mathf.Max(20.0f, government_wealth * 0.03f);
+        government_wealth -= Mathf.Min(5.0f, EndData.year / 2.0f) * Mathf.Max(20.0f, government_wealth * 0.03f);
         if (money < 500.0f || government_wealth < 500.0f || government_salaries == 0.0f)
         {
             government_wealth -= 20.0f;
         }
         government_wealth = Mathf.Max(0.0f, government_wealth);
-        citizen_smarts -= citizen_smarts * 0.04f;
+        citizen_smarts -= Mathf.Min(3.5f, EndData.year / 4.0f) * citizen_smarts * 0.03f;
 
         // Common accumulation
-        citizen_wealth += 0.005f * citizen_wealth * (citizen_smarts / 50.0f);
+        citizen_wealth += 0.005f * citizen_wealth * Mathf.Min(65.0f, citizen_smarts / 50.0f);
         money += 5.0f;
     }
 }
