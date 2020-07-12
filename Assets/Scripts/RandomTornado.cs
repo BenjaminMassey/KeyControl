@@ -7,8 +7,9 @@ public class RandomTornado : MonoBehaviour
     public GameObject[] tornadoes;
     public AudioSource sfx;
 
-    public float seconds = 3.0f;
-    public float chance = 0.05f;
+    public float wait_time = 10.0f; // wait [WAIT_TIME] seconds before starting
+    public float freq = 3.0f; // tornadoes every [FREQ] seconds
+    public float chance = 0.03f; // [CHANCE]% chance each time
 
     private bool doing;
 
@@ -21,9 +22,13 @@ public class RandomTornado : MonoBehaviour
 
     IEnumerator Run()
     {
+        for (int i = 0; i < 50 * wait_time; i++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
         while (true)
         {
-            for (int i = 0; i < 50 * seconds; i++)
+            for (int i = 0; i < 50 * freq; i++)
             {
                 yield return new WaitForFixedUpdate();
             }

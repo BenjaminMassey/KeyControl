@@ -1027,8 +1027,9 @@ MonoBehaviour:
   - {fileID: 1611681444}
   - {fileID: 383692974}
   sfx: {fileID: 1620584664}
-  seconds: 3
-  chance: 0.05
+  wait_time: 10
+  freq: 3
+  chance: 0.03
 --- !u!82 &1620584664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1539,7 +1540,7 @@ PrefabInstance:
     - target: {fileID: 4647937648457811268, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 35
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 4647937648457811268, guid: ba337bb43fb6e7e4b9796371b3cbaa02,
         type: 3}
