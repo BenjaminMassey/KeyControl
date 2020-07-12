@@ -23,7 +23,7 @@ public class MainFuctions : MonoBehaviour
     {
         time_text = GameObject.Find("TimeText").GetComponent<Text>();
         time_text.text = "Year 0\nJanuary";
-        running = true;
+        running = false;
         StartCoroutine("RunTime");
     }
 
