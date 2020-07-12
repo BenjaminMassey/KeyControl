@@ -48,6 +48,8 @@ public class MainFuctions : MonoBehaviour
                 }
                 MainValues.Month();
                 TextUpdate();
+                EndData.month = months[month];
+                EndData.year = year;
             }
             else
             {
