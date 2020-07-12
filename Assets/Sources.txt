@@ -5,3 +5,4 @@ Government sound: https://freesound.org/people/kyles/sounds/362087/
 Money gain sound: https://freesound.org/people/InspectorJ/sounds/484344/
 Money loss sound: https://freesound.org/people/Isaac200000/sounds/188013/
 Game over sound: https://freesound.org/people/NotR/sounds/172949/
+Font: https://fonts.google.com/specimen/Noto+Sans+JP?sidebar.open&selection.family=Noto+Sans+JP
