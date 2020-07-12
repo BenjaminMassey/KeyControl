@@ -107,7 +107,7 @@ public static class MainValues
         money = Mathf.Max(0.0f, money);
 
         // Foreign relations
-        outside_agitation += 2f * outside_agitation_value * (((military_base - military) / military_base) / 100.0f);
+        outside_agitation += 4f * outside_agitation_value * (((military_base - military) / military_base) / 100.0f);
         outside_agitation = Mathf.Max(0.0f, outside_agitation);
         outside_agitation = Mathf.Min(1.0f, outside_agitation);
 
@@ -126,7 +126,7 @@ public static class MainValues
             government_wealth -= 20.0f;
         }
         government_wealth = Mathf.Max(0.0f, government_wealth);
-        citizen_smarts -= citizen_smarts * 0.02f;
+        citizen_smarts -= citizen_smarts * 0.04f;
 
         // Common accumulation
         citizen_wealth += 0.005f * citizen_wealth * (citizen_smarts / 50.0f);
